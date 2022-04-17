@@ -110,8 +110,8 @@ def load_vocab(vocab_path, max_size, min_freq):
 
     sorted_tokens = sorted([item for item in vocab.items() if item[1] >= min_freq], key=lambda x: x[1], reverse=True)
     sorted_tokens = sorted_tokens[:max_size]
-    all_tokens = [[PAD, 0], [UNK, 0]] + sorted_tokens
-    vocab = {item[0]: i for i, item in enumerate(all_tokens)}
+    # all_tokens = [[PAD, 0], [UNK, 0]] + sorted_tokens
+    vocab = {item[0]: i for i, item in enumerate(sorted_tokens)}
     return vocab
 
 
