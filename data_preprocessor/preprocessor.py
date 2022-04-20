@@ -1,19 +1,12 @@
 from config import *
 import pandas as pd
 import matplotlib.pyplot as plt
-from scan import getTokens
 from tqdm import tqdm
-from nltk.corpus import stopwords
-from nltk.stem import PorterStemmer
 from sklearn.utils import shuffle
-import numpy as np
+from gensim.utils import simple_preprocess
+from gensim.parsing.porter import PorterStemmer
 
-# download stopwords
-# nltk.download('stopwords')
-ps = PorterStemmer()
-
-# get English stopwords
-english_stopwords = stopwords.words("english")
+porter_stemmer = PorterStemmer()
 
 
 def map_sentiment(stars_received):
@@ -93,6 +86,7 @@ def data_display_and_extraction():
     plt.close()
 
     # 5. Function call to get the top 200000 from each sentiment
+    data_df = data_df.loc[data_df['text'].str.len() > 20]
     top_data_df_small = get_top_data(data_df, top_n=200000)
 
     print("\nAfter segregating and taking equal number of rows for each sentiment:")
@@ -102,47 +96,33 @@ def data_display_and_extraction():
     top_data_df_small[["text", "sentiment"]].to_csv(ds_yelp_csv_after_extraction)
 
 
-def data_cleaning_for_one_document(content: str) -> str:
-    """
-    Do data cleaning for one specific document
-    :param content:
-    :return:
-    """
-    # 1. Normalization: convert all token values into lower cases so that different mixes of
-    #    the cases for the same word can be all matched (e.g., Book, book, and BOOK are
-    #    all converted to “book”).
-    content = content.lower()
-
-    tokens = getTokens(content)
-    # # 2. Further Filtering: remove certain kinds of tokens, including all numbers and
-    # # punctuation marks, since they are unlikely to be used in a query for information
-    # # retrieval.
-    tokens = [token.value for token in tokens if token.type not in ['NUMBER', 'PUNCTUATION', 'DELIMITERS']]
-    # tokens = [token.value for token in tokens]
-
-    # 3. Stop Word Removal: remove all stop words in English (such as “the”, “a”, “in”,
-    # and “of”) from the input (see sw_removal.py in A2-Package for an example).
-    tokens_nosw = [word for word in tokens if word not in english_stopwords]
-
-    # 4. Stemming: convert the remaining words to their stems. For example, “computer”,
-    # “computers”, “compute”, “computed”, “computing”, “computation”, and
-    # “computational” can all be reduced to the stem “comput” (see stemming.py in
-    # A2-Package for an example).
-    # return " ".join(tokens_nosw)
-    tokens_final = [ps.stem(word) for word in tokens_nosw]
-    return " ".join(tokens_final)
-
-
 def data_cleaning():
     # 1. load yelp dataset
     data_df = pd.read_csv(ds_yelp_csv_after_extraction)
 
-    # 2. do data cleaning for each sample
-    with tqdm(total=data_df.shape[0]) as bar:
-        for index, row in data_df.iterrows():
-            row["text"] = data_cleaning_for_one_document(row["text"])
-            bar.update()
+    # 2. Tokenization: Tokenization is the process in which the sentence/text is split into array of words called tokens.
+    # This helps to do transformations on each words separately and this is also required to transform words to numbers.
+    #
+    # Gensim’s simple_preprocess allows you to convert text to lower case and remove punctuations. It has min and max
+    # length parameters as well which help to filter out rare words and most commonly words which will fall in that
+    # range of lengths.
+    print("Start data cleaning => Tokenization")
+    # data_df = data_df.head(100)
+    data_df['tokenized_text'] = [simple_preprocess(line, deacc=True) for line in tqdm(data_df['text'])]
+    # print(data_df.query("81876"))
+    # return
+    # 3. Stemming: Stemming process reduces the words to its’ root word. Unlike Lemmatization which uses grammar rules
+    # and dictionary for mapping words to root form, stemming simply removes suffixes/prefixes. Stemming is widely used
+    # in the application of SEOs, Web search results, and information retrieval since as long as the root matches in the
+    # text somewhere it helps to retrieve all the related documents in the search
+    print("Start data cleaning => Stemming")
+    data_df['stemmed_tokens'] = [[porter_stemmer.stem(word) for word in tokens] for tokens in
+                                 tqdm(data_df['tokenized_text'])]
 
+    print("Start data cleaning => Merge token to text")
+    data_df['text'] = [" ".join(tokens) for tokens in tqdm(data_df['tokenized_text'])]
+
+    # 4. save to scv
     data_df.to_csv(ds_yelp_csv_after_data_cleaning)
 
 
@@ -202,35 +182,70 @@ def generate_hypertext_and_fasttext_dataset(output_dir: str, get_label_and_conte
     os.system(f"mkdir -p {output_dir}")
     with open(f"{output_dir}{os.sep}train.txt", "w") as f:
         for index, row in train_df.iterrows():
-            f.write(get_label_and_content(row))
+            res = get_label_and_content(row)
+            if res:
+                f.write(res)
     with open(f"{output_dir}{os.sep}dev.txt", "w") as f:
         for index, row in dev_df.iterrows():
-            f.write(get_label_and_content(row))
+            res = get_label_and_content(row)
+            if res:
+                f.write(res)
     with open(f"{output_dir}{os.sep}test.txt", "w") as f:
         for index, row in test_df.iterrows():
-            f.write(get_label_and_content(row))
+            res = get_label_and_content(row)
+            if res:
+                f.write(res)
+
+
+def generate_word2vec_dataset(output_dir: str, train_df, dev_df, test_df):
+    """
+    Generate dataset for word2vec
+    Args:
+        output_dir:
+        train_df:
+        dev_df:
+        test_df:
+
+    Returns:
+
+    """
+    os.system(f"mkdir -p {output_dir}")
+    train_df.to_csv(f"{output_dir}{os.sep}train.csv")
+    dev_df.to_csv(f"{output_dir}{os.sep}dev.csv")
+    test_df.to_csv(f"{output_dir}{os.sep}test.csv")
 
 
 if __name__ == '__main__':
     # 1. load json format yelp dataset, then convert to csv format
+    print("1. Start load yelp dataset")
     # load_yelp_orig_data()
 
     # 2. display dataset detail, then extract an equal number of samples for each sentiment
+    print("2. Start display and extraction")
     # data_display_and_extraction()
 
     # 3. do data cleaning
+    print("3. Start data cleaning")
     # data_cleaning()
 
     # 4. generate datasets
+    print("4. Start generate datasets for model")
     # Generate datasets of different sizes for HyperText
+    print("4.1 Generate datasets of different sizes for HyperText")
     for k, v in ds_yelp_hypertext_config.items():
         train_df, dev_df, test_df = split_dataset(v["count"])
         generate_hypertext_and_fasttext_dataset(v["path"], hypertext_get_label_and_content,
                                                 train_df, dev_df, test_df)
 
     # Generate datasets of different sizes for FastText
+    print("4.2 Generate datasets of different sizes for FastText")
     for k, v in ds_yelp_fasttext_config.items():
         train_df, dev_df, test_df = split_dataset(v["count"])
         generate_hypertext_and_fasttext_dataset(v["path"], fasttext_get_label_and_content,
                                                 train_df, dev_df, test_df)
 
+    # Generate datasets of different sizes for word2vec
+    print("4.3 Generate datasets of different sizes for word2vec")
+    for k, v in ds_yelp_word2vec_config.items():
+        train_df, dev_df, test_df = split_dataset(v["count"])
+        generate_word2vec_dataset(v["path"], train_df, dev_df, test_df)

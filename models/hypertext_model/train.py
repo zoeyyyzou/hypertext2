@@ -32,7 +32,7 @@ from utils import get_time_dif, build_dataloader
 from .radam_optimizer import *
 
 
-def train(config, model, train_data, dev_data, eval_per_batchs=100):
+def train(config, model, train_data, dev_data, test_data, eval_per_batchs=100):
     start_time = time.time()
     model.train()
     optimizer = RiemannianAdam(model.parameters(), lr=config.learning_rate)
@@ -94,7 +94,7 @@ def train(config, model, train_data, dev_data, eval_per_batchs=100):
 
         if flag:
             break
-    # test(config, model, test_data)
+    test(config, model, test_data)
 
 
 def test(config, model, test_data):
