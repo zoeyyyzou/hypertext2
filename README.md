@@ -53,4 +53,77 @@ Because the *yelp reviews* dataset is relatively large and there is no direct li
 
 This project will select 40w reviews from *Yelp reviews* dataset for sentiment analysis, and the number of positive and negative reviews in the selected 40w reviews should be equal. This paper will complete the data cleaning through the following steps：
 
-### 2.1 
+### 2.1 Load yelp dataset
+
+First, load yelp datasets from JSON format file (which download from  [zoeyyyzou/yelp (github.com) ](https://github.com/zoeyyyzou/yelp)), then use `pandas` to save it to csv format. 
+
+```python
+def load_yelp_orig_data():
+    data = []
+    for file in ds_yelp_files:
+        with open(f"{ds_yelp}{os.sep}{file}", "r") as f:
+            data += f.readlines()
+
+    # remove the trailing "\n" from each line
+    data = map(lambda x: x.rstrip(), data)
+
+    data_json_str = "[" + ','.join(data) + "]"
+
+    # now, load it into pandas
+    data_df = pd.read_json(data_json_str)
+    data_df.to_csv(ds_yelp_csv)
+load_yelp_orig_data()
+```
+
+Once the above function has been run, you are ready to load it in pandas dataframe for the next steps. 
+
+### 2.2 Exploring data
+
+Fist, display stars counts, then plotting the star distribution to svg.
+
+![star.svg](doc/stars.svg)
+
+Then, mapping from stars to sentiment is done and distribution for each sentiment is plotted. 
+
+> The project stipulates that **stars > 3 is positive** sentiment and **stars < = 3** is negative sentiment
+
+```python
+def map_sentiment(stars_received):
+    if stars_received <= 3:
+        return 0
+    else:
+        return 1
+data_df['sentiment'] = [map_sentiment(x) for x in data_df['stars']]
+```
+
+![sentiment.svg](doc/sentiment.svg)
+
+As can be seen from the above figure, a total of **473275** reviews in the current data set are **positive** and **226725** reviews are **negative**.
+
+In order to ensure the same number of positive and negative samples, we use the following code to take 200000 samples from each of the positive and negative samples for subsequent processing, and save to csv file.
+
+```python
+def get_top_data(data_df, top_n=200000):
+    top_data_df_positive = data_df[data_df['sentiment'] == 1].head(top_n)
+    top_data_df_negative = data_df[data_df['sentiment'] == 0].head(top_n)
+    top_data_df_small = pd.concat([top_data_df_positive, top_data_df_negative])
+    return top_data_df_small
+  
+data_df = data_df.loc[data_df['text'].str.len() > 20]
+data_df = get_top_data(data_df, top_n=200000)
+data_df.to_csv(ds_yelp_csv_after_extraction)
+```
+
+### 2.3 Data cleaning
+
+Before model training, we need to clean the datasets, we will clean the data according to the following steps.
+
+1. **Remove stop words.**
+
+   In the field of sentiment analysis, because stop words are usually related to emotional expression, this paper does not remove stop words from samples. For example,  `remove_stopwords("I did not like the food!!")` => `I like food!!`。
+
+   In the above example, after removing the stop word, the emotion changes from negative to positive.
+
+2. 
+
+3. 
