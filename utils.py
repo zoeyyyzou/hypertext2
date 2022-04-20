@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
-#The MIT License (MIT)
-#Copyright (c) 2021 Huawei Technologies Co., Ltd.
+# The MIT License (MIT)
+# Copyright (c) 2021 Huawei Technologies Co., Ltd.
 
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -123,6 +123,16 @@ def load_labels(label_path):
             if line not in labels:
                 labels.append(line)
     return labels
+
+
+def build_train_dataset(config, use_word, min_freq=5):
+    if use_word:
+        tokenizer = lambda x: x.split(' ')  # word-level
+    else:
+        tokenizer = lambda x: [y for y in x]  # char-level
+
+    _ = build_vocab(config.train_path, tokenizer=tokenizer, max_size=MAX_VOCAB_SIZE, min_freq=min_freq)
+    vocab = load_vocab(config.vocab_path, max_size=MAX_VOCAB_SIZE, min_freq=min_freq)
 
 
 def build_dataset(config, use_word, min_freq=5):
@@ -278,6 +288,7 @@ def text_collate_fn(batch_data):
 
     return (x, wordNgrams), y
 
+
 def build_dataloader(dataset, batch_size, shuffle=False):
     dataloader = torch.utils.data.DataLoader(
         dataset=dataset,
@@ -289,6 +300,7 @@ def build_dataloader(dataset, batch_size, shuffle=False):
     )
 
     return dataloader
+
 
 def get_time_dif(start_time):
     end_time = time.time()

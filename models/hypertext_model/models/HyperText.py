@@ -23,9 +23,8 @@
 
 
 import torch.nn as nn
-from hyperbolic.poincare import *
-from hyperbolic.mobius_linear import *
-
+from models.hypertext_model.hyperbolic import *
+from models.hypertext_model.hyperbolic.poincare import ManifoldParameter
 
 class Model(nn.Module):
     def __init__(self, config):

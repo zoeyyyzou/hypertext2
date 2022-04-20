@@ -1,7 +1,7 @@
 .idea/
 __pycache__/
-hyperbolic/__pycache__/
-models/__pycache__/
+models/hypertext_model/hyperbolic/__pycache__/
+models/hypertext_model/models/__pycache__/
 venv/
 output/
 datasets/

@@ -1,6 +1,6 @@
-#-*- coding:utf-8 -*-
-#The MIT License (MIT)
-#Copyright (c) 2021 Huawei Technologies Co., Ltd.
+# -*- coding:utf-8 -*-
+# The MIT License (MIT)
+# Copyright (c) 2021 Huawei Technologies Co., Ltd.
 
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -35,7 +35,8 @@ from utils import build_dataset, get_time_dif, build_dataloader
 parser = argparse.ArgumentParser(description='HyperText Text Classification')
 parser.add_argument('--model', type=str, default='HyperText',
                     help='HyperText')
-parser.add_argument('--embedding', default='random', type=str, help='using random init word embedding or using pretrained')
+parser.add_argument('--embedding', default='random', type=str,
+                    help='using random init word embedding or using pretrained')
 parser.add_argument('--use_word_segment', default=True, type=bool, help='True for word, False for char')
 parser.add_argument('--datasetdir', default='./data/tnews_public', type=str, help='dataset dir')
 parser.add_argument('--outputdir', default='./output', type=str, help='output dir')
@@ -50,14 +51,16 @@ parser.add_argument('--bucket', default=1500000, type=int, help='total ngram buc
 parser.add_argument('--wordNgrams', default=2, type=int, help='use max n-grams, eg: 2 or 3 ...')
 parser.add_argument('--eval_per_batchs', default=100, type=int, help='eval_per_batchs')
 parser.add_argument('--min_freq', default=1, type=int, help='min word frequents of construct vocab')
-parser.add_argument('--lr_decay_rate', default=0.96, type=float, help='lr_decay_rate')#0.96,0.87
+parser.add_argument('--lr_decay_rate', default=0.96, type=float, help='lr_decay_rate')  # 0.96,0.87
 
 args = parser.parse_args()
+
 
 def print_config(config):
     print("hyperparamper config:")
     for k, v in config.__dict__.items():
         print("%s=%s" % (str(k), str(v)))
+
 
 if __name__ == '__main__':
     random.seed(1)
@@ -67,13 +70,13 @@ if __name__ == '__main__':
     torch.backends.cudnn.deterministic = True
 
     dataset = args.datasetdir
-    outputdir =  args.outputdir
+    outputdir = args.outputdir
 
     embedding = ''
     if args.embedding == 'random':
         embedding = 'random'
     else:
-        embedding=args.embedding
+        embedding = args.embedding
 
     model_name = args.model
     print(model_name)
@@ -94,7 +97,7 @@ if __name__ == '__main__':
     config.embed = int(args.embed_dim)
     config.bucket = int(args.bucket)
     config.wordNgrams = int(args.wordNgrams)
-    config.lr_decay_rate=float(args.lr_decay_rate)
+    config.lr_decay_rate = float(args.lr_decay_rate)
 
     start_time = time.time()
     print("Loading data...")

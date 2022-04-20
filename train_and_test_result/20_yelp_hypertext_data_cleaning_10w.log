@@ -1,0 +1,100 @@
+HyperText
+Loading data...
+use min words freq:1
+Vocab size: 46725
+label size: 2
+Finished Data loaded...
+Time usage: 0:00:01
+hyperparamper config:
+model_name=HyperText
+train_path=datasets/yelp_hypertext_10w_data_cleaning/train.txt
+dev_path=datasets/yelp_hypertext_10w_data_cleaning/dev.txt
+test_path=datasets/yelp_hypertext_10w_data_cleaning/test.txt
+class_list=['0', '1']
+vocab_path=datasets/yelp_hypertext_10w_data_cleaning/vocab.txt
+labels_path=datasets/yelp_hypertext_10w_data_cleaning/labels.txt
+save_path=output/20_yelp_data_cleaning_100000/HyperText.ckpt
+log_path=output/20_yelp_data_cleaning_100000/HyperText.log
+embedding_pretrained=None
+device=cpu
+dropout=0.0
+require_improvement=6000
+num_classes=2
+n_vocab=46725
+num_epochs=2
+wordNgrams=2
+batch_size=50
+max_length=1000
+learning_rate=0.011
+embed=20
+bucket=1500000
+lr_decay_rate=0.96
+<bound method Module.parameters of Model(
+  (dropout): Dropout(p=0.0, inplace=False)
+  (hyperLinear): MobiusLinear(in_features_size=20, out_features_size=2, curvalture=1.0)
+)>
+Epoch:1/2
+Train Step:      0,  Train Loss: 0.6927,  Train Acc: 70.0000%,  Val Loss: 0.6884,  Val Acc: 81.0600%,  Time: 0:00:29 **
+Train Step:     50,  Train Loss: 0.4427,  Train Acc: 80.0000%,  Val Loss: 0.4349,  Val Acc: 81.0600%,  Time: 0:07:53 
+Train Step:    100,  Train Loss: 0.3171,  Train Acc: 88.0000%,  Val Loss: 0.2916,  Val Acc: 86.8100%,  Time: 0:16:03 **
+Train Step:    150,  Train Loss: 0.2468,  Train Acc: 88.0000%,  Val Loss: 0.2404,  Val Acc: 90.2100%,  Time: 0:24:15 **
+Train Step:    200,  Train Loss: 0.1489,  Train Acc: 94.0000%,  Val Loss: 0.2247,  Val Acc: 91.1850%,  Time: 0:29:36 **
+Train Step:    250,  Train Loss: 0.3595,  Train Acc: 86.0000%,  Val Loss: 0.2154,  Val Acc: 91.1650%,  Time: 0:35:05 
+Train Step:    300,  Train Loss: 0.187,  Train Acc: 92.0000%,  Val Loss: 0.2091,  Val Acc: 91.5500%,  Time: 0:39:52 **
+Train Step:    350,  Train Loss: 0.1994,  Train Acc: 94.0000%,  Val Loss: 0.2054,  Val Acc: 91.8100%,  Time: 0:44:41 **
+Train Step:    400,  Train Loss: 0.1744,  Train Acc: 96.0000%,  Val Loss: 0.2036,  Val Acc: 91.8800%,  Time: 0:49:44 **
+Train Step:    450,  Train Loss: 0.2316,  Train Acc: 90.0000%,  Val Loss: 0.2012,  Val Acc: 92.0050%,  Time: 0:55:21 **
+Train Step:    500,  Train Loss: 0.141,  Train Acc: 98.0000%,  Val Loss: 0.1996,  Val Acc: 92.1150%,  Time: 1:00:07 **
+Train Step:    550,  Train Loss: 0.2159,  Train Acc: 92.0000%,  Val Loss: 0.2008,  Val Acc: 92.2500%,  Time: 1:06:03 **
+Train Step:    600,  Train Loss: 0.128,  Train Acc: 94.0000%,  Val Loss: 0.195,  Val Acc: 92.3950%,  Time: 1:11:12 **
+Train Step:    650,  Train Loss: 0.3269,  Train Acc: 90.0000%,  Val Loss: 0.1939,  Val Acc: 92.3050%,  Time: 1:16:51 
+Train Step:    700,  Train Loss: 0.2476,  Train Acc: 90.0000%,  Val Loss: 0.1941,  Val Acc: 92.2600%,  Time: 1:22:09 
+Train Step:    750,  Train Loss: 0.2655,  Train Acc: 90.0000%,  Val Loss: 0.1935,  Val Acc: 92.2300%,  Time: 1:28:15 
+Train Step:    800,  Train Loss: 0.0944,  Train Acc: 98.0000%,  Val Loss: 0.1915,  Val Acc: 92.3350%,  Time: 1:32:22 
+Train Step:    850,  Train Loss: 0.1495,  Train Acc: 94.0000%,  Val Loss: 0.191,  Val Acc: 92.3950%,  Time: 1:38:20 
+Train Step:    900,  Train Loss: 0.1865,  Train Acc: 90.0000%,  Val Loss: 0.1907,  Val Acc: 92.2900%,  Time: 1:43:23 
+Train Step:    950,  Train Loss: 0.2074,  Train Acc: 92.0000%,  Val Loss: 0.1904,  Val Acc: 92.3000%,  Time: 1:49:09 
+Train Step:   1000,  Train Loss: 0.2693,  Train Acc: 84.0000%,  Val Loss: 0.1901,  Val Acc: 92.4550%,  Time: 1:54:36 **
+Train Step:   1050,  Train Loss: 0.214,  Train Acc: 88.0000%,  Val Loss: 0.1891,  Val Acc: 92.4300%,  Time: 1:59:10 
+Train Step:   1100,  Train Loss: 0.1769,  Train Acc: 92.0000%,  Val Loss: 0.1886,  Val Acc: 92.4900%,  Time: 2:04:44 **
+Train Step:   1150,  Train Loss: 0.2304,  Train Acc: 90.0000%,  Val Loss: 0.1887,  Val Acc: 92.3850%,  Time: 2:10:32 
+Epoch:2/2
+Train Step:   1200,  Train Loss: 0.1964,  Train Acc: 92.0000%,  Val Loss: 0.1879,  Val Acc: 92.5750%,  Time: 2:15:58 **
+Train Step:   1250,  Train Loss: 0.1409,  Train Acc: 96.0000%,  Val Loss: 0.1875,  Val Acc: 92.5750%,  Time: 2:20:31 
+Train Step:   1300,  Train Loss: 0.09798,  Train Acc: 96.0000%,  Val Loss: 0.1876,  Val Acc: 92.6050%,  Time: 2:26:37 **
+Train Step:   1350,  Train Loss: 0.06639,  Train Acc: 98.0000%,  Val Loss: 0.1877,  Val Acc: 92.5900%,  Time: 2:30:59 
+Train Step:   1400,  Train Loss: 0.1613,  Train Acc: 92.0000%,  Val Loss: 0.1877,  Val Acc: 92.6200%,  Time: 2:36:41 **
+Train Step:   1450,  Train Loss: 0.2571,  Train Acc: 92.0000%,  Val Loss: 0.1882,  Val Acc: 92.6150%,  Time: 2:41:06 
+Train Step:   1500,  Train Loss: 0.09935,  Train Acc: 94.0000%,  Val Loss: 0.1881,  Val Acc: 92.5600%,  Time: 2:45:46 
+Train Step:   1550,  Train Loss: 0.1207,  Train Acc: 92.0000%,  Val Loss: 0.189,  Val Acc: 92.5550%,  Time: 2:50:34 
+Train Step:   1600,  Train Loss: 0.0737,  Train Acc: 96.0000%,  Val Loss: 0.1881,  Val Acc: 92.6200%,  Time: 2:56:32 
+Train Step:   1650,  Train Loss: 0.1141,  Train Acc: 96.0000%,  Val Loss: 0.1881,  Val Acc: 92.6300%,  Time: 3:01:09 **
+Train Step:   1700,  Train Loss: 0.08681,  Train Acc: 96.0000%,  Val Loss: 0.1886,  Val Acc: 92.6100%,  Time: 3:05:48 
+Train Step:   1750,  Train Loss: 0.09467,  Train Acc: 98.0000%,  Val Loss: 0.1889,  Val Acc: 92.6100%,  Time: 3:10:57 
+Train Step:   1800,  Train Loss: 0.05563,  Train Acc: 98.0000%,  Val Loss: 0.189,  Val Acc: 92.6450%,  Time: 3:16:29 **
+Train Step:   1850,  Train Loss: 0.07118,  Train Acc: 98.0000%,  Val Loss: 0.1889,  Val Acc: 92.6050%,  Time: 3:21:16 
+Train Step:   1900,  Train Loss: 0.08461,  Train Acc: 98.0000%,  Val Loss: 0.1892,  Val Acc: 92.6050%,  Time: 3:27:25 
+Train Step:   1950,  Train Loss: 0.1219,  Train Acc: 94.0000%,  Val Loss: 0.1894,  Val Acc: 92.5750%,  Time: 3:32:48 
+Train Step:   2000,  Train Loss: 0.06318,  Train Acc: 98.0000%,  Val Loss: 0.1898,  Val Acc: 92.6100%,  Time: 3:38:59 
+Train Step:   2050,  Train Loss: 0.1225,  Train Acc: 98.0000%,  Val Loss: 0.1898,  Val Acc: 92.6050%,  Time: 3:44:45 
+Train Step:   2100,  Train Loss: 0.1668,  Train Acc: 92.0000%,  Val Loss: 0.1897,  Val Acc: 92.5950%,  Time: 3:51:01 
+Train Step:   2150,  Train Loss: 0.1288,  Train Acc: 94.0000%,  Val Loss: 0.1897,  Val Acc: 92.6650%,  Time: 3:56:46 **
+Train Step:   2200,  Train Loss: 0.1702,  Train Acc: 94.0000%,  Val Loss: 0.1899,  Val Acc: 92.6850%,  Time: 4:01:07 **
+Train Step:   2250,  Train Loss: 0.05218,  Train Acc: 98.0000%,  Val Loss: 0.1903,  Val Acc: 92.6650%,  Time: 4:06:39 
+Train Step:   2300,  Train Loss: 0.1305,  Train Acc: 96.0000%,  Val Loss: 0.1907,  Val Acc: 92.6800%,  Time: 4:11:01 
+Train Step:   2350,  Train Loss: 0.05813,  Train Acc: 98.0000%,  Val Loss: 0.1907,  Val Acc: 92.6300%,  Time: 4:17:12 
+Test Loss:  0.18,  Test Acc: 92.88%
+Precision, Recall and F1-Score...
+              precision    recall  f1-score   support
+
+           0     0.8401    0.7689    0.8029      3773
+           1     0.9473    0.9660    0.9566     16227
+
+    accuracy                         0.9288     20000
+   macro avg     0.8937    0.8674    0.8797     20000
+weighted avg     0.9271    0.9288    0.9276     20000
+
+Confusion Matrix...
+[[ 2901   872]
+ [  552 15675]]
+Test Time: 0:01:15

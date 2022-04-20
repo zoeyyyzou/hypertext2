@@ -15,10 +15,10 @@ tokens = (
     'NUMBER',
 
     # APOSTROPHIZED: words like “John’s”, “O’Reily”, and “O’Reily’s” should be
-    # treated as single tokens. However, “world’cup” and “this’is’just’a’test” are likely
+    # treated as single tokens. However, “world’cup” and “this’is’just’a’models” are likely
     # to be typos and should be split further. Due to the longest possible match in JFlex,
     # however, it’s hard to separate these two cases in a scanner. As a result, you can treat
-    # strings like “world’cup” and “this’is’just’a’test” as APOSTROPHIZED for now.
+    # strings like “world’cup” and “this’is’just’a’models” as APOSTROPHIZED for now.
     'APOSTROPHIZED',
 
     # HYPHENATED: words such as “data-base” and “father-in-law” should be treated as
@@ -50,8 +50,8 @@ def t_APOSTROPHIZED(t):
     # it has one or two characters; otherwise, add spaces on both sides of the apostrophe. For example,
     # we will split “You’re” and “I’ve” to “You ’re” and “I ’ve”, but “world’cup” will be split
     # into a sequence of three tokens “world ’ cup”. Note that the above two rules may be tested
-    # together so that “father-in-law’s” is treated as one token, but “this-is-just-a-test’s”
-    # should be split into a sequence of tokens “this - is - just - a - test ’ s”.
+    # together so that “father-in-law’s” is treated as one token, but “this-is-just-a-models’s”
+    # should be split into a sequence of tokens “this - is - just - a - models ’ s”.
     r'\w+(-\w+)*(\'\w+)+'
     items = t.value.split("'")
 
@@ -81,7 +81,7 @@ def t_HYPHENATED(t):
     # hyphens, and if there are three parts, the middle part can only have one or two characters.
     # Otherwise, the token should be split into a sequence of tokens. Such a rule will keep strings like
     # “data-base” and “father-in-law” as single tokens, but split strings like “this-is-just-atest”
-    # into sequences of tokens such as “this - is - just - a - test”.
+    # into sequences of tokens such as “this - is - just - a - models”.
     r"""\w+(-\w+)+"""
     items = t.value.split("-")
     if len(items) > 3 or (len(items) == 3 and len(items[1]) > 2):

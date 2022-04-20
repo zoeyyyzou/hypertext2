@@ -1,11 +1,9 @@
 import json
-import os
-import nltk
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
-from scan import getTokens
+from data_preprocessor.scan import getTokens
 from tqdm import tqdm
-from config import *
+from data_preprocessor.config import *
 
 # download stopwords
 # nltk.download('stopwords')
@@ -17,7 +15,7 @@ english_stopwords = stopwords.words("english")
 
 def split_yelp():
     """
-    Split yelp dataset to train/dev/test => 60%/20%/20%
+    Split yelp dataset to train/dev/models => 60%/20%/20%
     :return:
     """
     os.system(f"mkdir -p {ds_yelp}")
@@ -91,7 +89,7 @@ def generate_dataset(dir: str, dir_data_cleaning: str, sampleNum: int, get_label
                      dev_ratio: float = 0.2,
                      test_ratio: float = 0.2):
     """
-    generate dataset for hypertext (train.txt, test.txt, dev.txt)
+    generate dataset for hypertext_model (train.txt, test.txt, dev.txt)
     :param get_label_and_content:
     :param dir:
     :param sampleNum:
@@ -133,6 +131,7 @@ def fasttext_get_label_and_content(line: str) -> str:
     content = item["text"].strip("\n").replace('\t', ' ').replace("\n", '').replace("\r", '')
     label = 1 if int(item["stars"]) >= 3 else 0
     return "%s __label__%d\n" % (content, label)
+
 
 
 if __name__ == '__main__':

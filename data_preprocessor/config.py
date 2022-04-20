@@ -12,13 +12,18 @@ ds_yelp_files = ["yelp_review_0.json",
                  "yelp_review_2.json",
                  "yelp_review_3.json",
                  "yelp_review_4.json",
-                 # "yelp_review_5.json",
-                 # "yelp_review_6.json",
+                 "yelp_review_5.json",
+                 "yelp_review_6.json",
                  # "yelp_review_7.json",
                  # "yelp_review_8.json",
                  # "yelp_review_9.json"
                  ]
-# yelp for hypertext
+ds_yelp_csv = f"{dataset_dir}{os.sep}/yelp_csv.csv"
+ds_yelp_csv_after_extraction = f"{dataset_dir}{os.sep}/yelp_csv_after_extraction.csv"
+ds_yelp_csv_after_data_cleaning = f"{dataset_dir}{os.sep}/ds_yelp_csv_after_data_cleaning.csv"
+
+
+# yelp for hypertext_model
 ds_yelp_hypertext_config = {
     # "yelp_hypertext_1000": {
     #     "path": f"{dataset_dir}{os.sep}yelp_hypertext_1000",
@@ -26,21 +31,25 @@ ds_yelp_hypertext_config = {
     #     "count": 1000
     # },
     "yelp_hypertext_1w": {
+        "dirname": "yelp_hypertext_1w",
         "path": f"{dataset_dir}{os.sep}yelp_hypertext_1w",
         "path_after_data_cleaning": f"{dataset_dir}{os.sep}yelp_hypertext_1w_data_cleaning",
         "count": 10000
     },
     "yelp_hypertext_10w": {
+        "dirname": "yelp_hypertext_10w",
         "path": f"{dataset_dir}{os.sep}yelp_hypertext_10w",
         "path_after_data_cleaning": f"{dataset_dir}{os.sep}yelp_hypertext_10w_data_cleaning",
         "count": 100000
     },
     "yelp_hypertext_20w": {
+        "dirname": "yelp_hypertext_20w",
         "path": f"{dataset_dir}{os.sep}yelp_hypertext_20w",
         "path_after_data_cleaning": f"{dataset_dir}{os.sep}yelp_hypertext_20w_data_cleaning",
         "count": 200000
     },
     "yelp_hypertext_40w": {
+        "dirname": "yelp_hypertext_40w",
         "path": f"{dataset_dir}{os.sep}yelp_hypertext_40w",
         "path_after_data_cleaning": f"{dataset_dir}{os.sep}yelp_hypertext_40w_data_cleaning",
         "count": 400000
@@ -62,7 +71,7 @@ ds_yelp_hypertext_config = {
     # },
 }
 
-# yelp for fasttext
+# yelp for fasttext_model
 ds_yelp_fasttext_config = {
     # "yelp_fasttext_1000": {
     #     "path": f"{dataset_dir}{os.sep}yelp_fasttext_1000",
@@ -70,21 +79,25 @@ ds_yelp_fasttext_config = {
     #     "count": 1000
     # },
     "yelp_fasttext_1w": {
+        "dirname": "yelp_fasttext_1w",
         "path": f"{dataset_dir}{os.sep}yelp_fasttext_1w",
         "path_after_data_cleaning": f"{dataset_dir}{os.sep}yelp_fasttext_1w_data_cleaning",
         "count": 10000
     },
     "yelp_fasttext_10w": {
+        "dirname": "yelp_fasttext_10w",
         "path": f"{dataset_dir}{os.sep}yelp_fasttext_10w",
         "path_after_data_cleaning": f"{dataset_dir}{os.sep}yelp_fasttext_10w_data_cleaning",
         "count": 100000
     },
     "yelp_fasttext_20w": {
+        "dirname": "yelp_fasttext_20w",
         "path": f"{dataset_dir}{os.sep}yelp_fasttext_20w",
         "path_after_data_cleaning": f"{dataset_dir}{os.sep}yelp_fasttext_20w_data_cleaning",
         "count": 200000
     },
     "yelp_fasttext_40w": {
+        "dirname": "yelp_fasttext_40w",
         "path": f"{dataset_dir}{os.sep}yelp_fasttext_40w",
         "path_after_data_cleaning": f"{dataset_dir}{os.sep}yelp_fasttext_40w_data_cleaning",
         "count": 400000

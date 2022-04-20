@@ -1,15 +1,13 @@
 import sys
-import threading
 import time
-import os
 import torch
 import numpy as np
 import random
-from train import train
-from models.Config import Config
-from utils import build_dataset, get_time_dif, build_dataloader
-from models import HyperText
-from config import *
+from models.hypertext_model.train import train
+from models.hypertext_model.models import HyperText
+from models.hypertext_model.models.Config import Config
+from utils import build_dataset, get_time_dif
+from data_preprocessor.config import *
 
 
 def print_config(config):
@@ -56,7 +54,7 @@ def train_and_test(dataset_dir: str, output_dir: str, embedding: str = "random",
 
     print_config(config)
     print(model.parameters)
-    train(config, model, train_data, dev_data, test_data, eval_per_batchs)
+    train(config, model, train_data, dev_data, eval_per_batchs)
 
 
 if __name__ == '__main__':
@@ -75,7 +73,6 @@ if __name__ == '__main__':
         if skip > 0:
             skip -= 1
             continue
-        train_and_test(v["path_after_data_cleaning"], f"output/20_yelp_data_cleaning_{v['count']}", num_epochs=2)
+        train_and_test(f"datasets{os.sep}{v['dirname']}", f"output/20_yelp_{v['count']}", num_epochs=3,
+                       min_freq=5)
         break
-
-

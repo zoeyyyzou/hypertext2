@@ -1,6 +1,6 @@
-#-*- coding:utf-8 -*-
-#The MIT License (MIT)
-#Copyright (c) 2021 Huawei Technologies Co., Ltd.
+# -*- coding:utf-8 -*-
+# The MIT License (MIT)
+# Copyright (c) 2021 Huawei Technologies Co., Ltd.
 
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -28,11 +28,11 @@ import torch.nn as nn
 import torch.nn.functional as F
 from sklearn import metrics
 import time
-from utils import get_time_dif,build_dataloader
-from radam_optimizer import *
+from utils import get_time_dif, build_dataloader
+from .radam_optimizer import *
 
 
-def train(config, model, train_data, dev_data, test_data, eval_per_batchs=100):
+def train(config, model, train_data, dev_data, eval_per_batchs=100):
     start_time = time.time()
     model.train()
     optimizer = RiemannianAdam(model.parameters(), lr=config.learning_rate)
@@ -44,12 +44,12 @@ def train(config, model, train_data, dev_data, test_data, eval_per_batchs=100):
     for epoch in range(config.num_epochs):
         print('Epoch:{}/{}'.format(epoch + 1, config.num_epochs))
         train_data.initial()
-        train_iter = build_dataloader(train_data, config.batch_size,True)
+        train_iter = build_dataloader(train_data, config.batch_size, True)
         for i, (trains, labels) in enumerate(train_iter):
-            trains1=trains[0].to(config.device)
+            trains1 = trains[0].to(config.device)
             trains2 = trains[1].to(config.device)
 
-            trains=(trains1,trains2)
+            trains = (trains1, trains2)
             labels = labels.to(config.device)
 
             outputs = model(trains)
@@ -94,7 +94,8 @@ def train(config, model, train_data, dev_data, test_data, eval_per_batchs=100):
 
         if flag:
             break
-    test(config, model, test_data)
+    # test(config, model, test_data)
+
 
 def test(config, model, test_data):
     model.load_state_dict(torch.load(config.save_path))
@@ -118,7 +119,7 @@ def evaluate(config, model, dev_data, test=False):
     labels_all = np.array([], dtype=int)
 
     dev_data.initial()
-    dev_iter = build_dataloader(dev_data, config.batch_size,False)
+    dev_iter = build_dataloader(dev_data, config.batch_size, False)
     with torch.no_grad():
         for (evals, labels) in dev_iter:
             evals1 = evals[0].to(config.device)
@@ -140,5 +141,5 @@ def evaluate(config, model, dev_data, test=False):
     if test:
         report = metrics.classification_report(labels_all, predict_all, target_names=config.class_list, digits=4)
         confusion = metrics.confusion_matrix(labels_all, predict_all)
-        return acc, loss_total / (len(dev_data)/config.batch_size), report, confusion
-    return acc, loss_total / (len(dev_data)/config.batch_size)
+        return acc, loss_total / (len(dev_data) / config.batch_size), report, confusion
+    return acc, loss_total / (len(dev_data) / config.batch_size)

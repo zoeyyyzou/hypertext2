@@ -23,8 +23,8 @@
 
 import math
 import torch.optim
-from hyperbolic.euclidean import Euclidean
-from hyperbolic.poincare import ManifoldParameter
+from .hyperbolic.euclidean import Euclidean
+from .hyperbolic.poincare import ManifoldParameter
 
 class RiemannianAdam(torch.optim.Adam):
     """

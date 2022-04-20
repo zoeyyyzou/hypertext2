@@ -1,7 +1,7 @@
 #  HyperText 
 Natural language data exhibit tree-like hierarchical structures such as the hypernymhyponym relations in WordNet. Considering that hyperbolic space is naturally suitable for modeling tree-like hierarchical data, we propose a new model named HyperText for efﬁcient text classiﬁcation by endowing FastText with hyperbolic geometry. Empirically, we show that HyperText outperforms FastText on a range of text classiﬁcation tasks with much reduced parameters.  
 
-![avatar](./hypertext_model_architecture.png)
+![avatar](hypertext_model_architecture.png)
 
 For more details about the techniques of HyperText,  please refer to our paper:  
 
