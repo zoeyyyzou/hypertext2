@@ -725,3 +725,26 @@ python preprocessor.py
 
 
 
+## 5. Experiment result
+
+|      | Dataset Size |      |      |      |
+| ---- | ------------ | ---- | ---- | ---- |
+|      |              |      |      |      |
+|      |              |      |      |      |
+|      |              |      |      |      |
+|      |              |      |      |      |
+|      |              |      |      |      |
+
+
+
+- Accuracy 
+
+  ![accuracy.svg](doc/accuracy.svg)
+
+- F1-score
+
+  ![f1score.svg](doc/f1score.svg)
+
+- Train time
+
+  ![train-time.svg](doc/train-time.svg)
