@@ -727,21 +727,40 @@ python preprocessor.py
 
 ## 5. Experiment result
 
-|      | Dataset Size |      |      |      |
-| ---- | ------------ | ---- | ---- | ---- |
-|      |              |      |      |      |
-|      |              |      |      |      |
-|      |              |      |      |      |
-|      |              |      |      |      |
-|      |              |      |      |      |
+|             | Dataset Size | Train/Validation/Test Ratio |      |      |
+| ----------- | :----------: | :-------------------------: | :--: | ---- |
+| Experiment1 |    10000     |       0.6 : 0.2 : 0.2       |      |      |
+| Experiment2 |    100000    |       0.6 : 0.2 : 0.2       |      |      |
+| Experiment3 |    200000    |       0.6 : 0.2 : 0.2       |      |      |
+| Experiment4 |    400000    |       0.6 : 0.2 : 0.2       |      |      |
 
 
 
 - Accuracy 
 
+  => Accuracy measures how many observations, both positive and negative, were correctly classified:
+
+  ```python
+  ACC = (TP + TN) / (TP + FP + TN + FN)
+  ```
+
+  - True Positive(TP)：The number of positive class predict as positive classes
+  - True Negative(TN)：The number of negative class predict as negative classes
+  - False Positive(FP)：The number of negative class predict as positive classes
+  - False Negative(FN)：The number of positive class predict as negative classes
+
   ![accuracy.svg](doc/accuracy.svg)
 
 - F1-score
+
+  => F1-score combines precision and recall into one metric by calculating the harmonic mean between those two.
+
+  ```bash
+  F1 = 2 * (precision * recall) / (precision + recall)
+  ```
+
+  - precision = TP / (TP + FP)
+  - recall = TP / (TP + FN)[]()
 
   ![f1score.svg](doc/f1score.svg)
 
