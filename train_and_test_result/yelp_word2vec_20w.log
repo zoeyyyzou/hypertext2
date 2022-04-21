@@ -1,0 +1,31 @@
+
+======================= datasets/yelp_word2vec_20w =======================
+1. Start train word2vec
+Time taken to train word2vec model: 103.53115200996399
+2. Start  generate word2vec vectors
+3. Start train decision tree
+Time taken to fit the model with word2vec vectors: 18.67155909538269
+Decision tree train time: 0:03:38
+4. Start test decision tree
+              precision    recall  f1-score   support
+
+           0       0.58      0.58      0.58     20000
+           1       0.58      0.58      0.58     20000
+
+    accuracy                           0.58     40000
+   macro avg       0.58      0.58      0.58     40000
+weighted avg       0.58      0.58      0.58     40000
+
+5. train SVM
+Time taken to fit the model with word2vec vectors: 1420.1276369094849
+SVM train time: 0:26:59
+6. test SVM
+              precision    recall  f1-score   support
+
+           0       0.64      0.74      0.69     20000
+           1       0.69      0.59      0.64     20000
+
+    accuracy                           0.66     40000
+   macro avg       0.67      0.66      0.66     40000
+weighted avg       0.67      0.66      0.66     40000
+

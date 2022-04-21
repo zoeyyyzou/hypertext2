@@ -1,0 +1,48 @@
+
+======================= datasets/yelp_fasttext_1w =======================
+fasttext train time: 0:00:00
+              precision    recall  f1-score   support
+
+     class 0       0.83      0.84      0.84      1000
+     class 1       0.84      0.82      0.83      1000
+
+    accuracy                           0.83      2000
+   macro avg       0.83      0.83      0.83      2000
+weighted avg       0.83      0.83      0.83      2000
+
+
+======================= datasets/yelp_fasttext_10w =======================
+fasttext train time: 0:00:02
+              precision    recall  f1-score   support
+
+     class 0       0.88      0.89      0.88     10000
+     class 1       0.89      0.87      0.88     10000
+
+    accuracy                           0.88     20000
+   macro avg       0.88      0.88      0.88     20000
+weighted avg       0.88      0.88      0.88     20000
+
+
+======================= datasets/yelp_fasttext_20w =======================
+fasttext train time: 0:00:03
+              precision    recall  f1-score   support
+
+     class 0       0.89      0.90      0.89     20000
+     class 1       0.90      0.89      0.89     20000
+
+    accuracy                           0.89     40000
+   macro avg       0.89      0.89      0.89     40000
+weighted avg       0.89      0.89      0.89     40000
+
+
+======================= datasets/yelp_fasttext_40w =======================
+fasttext train time: 0:00:07
+              precision    recall  f1-score   support
+
+     class 0       0.90      0.94      0.92     40000
+     class 1       0.93      0.89      0.91     40000
+
+    accuracy                           0.91     80000
+   macro avg       0.91      0.91      0.91     80000
+weighted avg       0.91      0.91      0.91     80000
+

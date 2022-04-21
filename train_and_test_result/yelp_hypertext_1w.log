@@ -1,0 +1,59 @@
+
+
+============================== Start datasets/yelp_hypertext_1w ==============================
+Loading data...
+use min words freq:5
+Vocab size: 5935
+label size: 2
+Finished Data loaded...
+Time usage: 0:00:00
+hyperparamper config:
+model_name=HyperText
+train_path=datasets/yelp_hypertext_1w/train.txt
+dev_path=datasets/yelp_hypertext_1w/dev.txt
+test_path=datasets/yelp_hypertext_1w/test.txt
+class_list=['0', '1']
+vocab_path=datasets/yelp_hypertext_1w/vocab.txt
+labels_path=datasets/yelp_hypertext_1w/labels.txt
+save_path=output/20_yelp_data_cleaning_10000/HyperText.ckpt
+log_path=output/20_yelp_data_cleaning_10000/HyperText.log
+embedding_pretrained=None
+device=cpu
+dropout=0.0
+require_improvement=6000
+num_classes=2
+n_vocab=5935
+num_epochs=2
+wordNgrams=2
+batch_size=50
+max_length=1000
+learning_rate=0.011
+embed=20
+bucket=1500000
+lr_decay_rate=0.96
+<bound method Module.parameters of Model(
+  (dropout): Dropout(p=0.0, inplace=False)
+  (hyperLinear): MobiusLinear(in_features_size=20, out_features_size=2, curvalture=1.0)
+)>
+Epoch:1/2
+Train Step:      0,  Train Loss: 0.6929,  Train Acc: 52.0000%,  Val Loss: 0.6927,  Val Acc: 51.0000%,  Time: 0:00:05 **
+Train Step:     50,  Train Loss: 0.6109,  Train Acc: 74.0000%,  Val Loss: 0.6047,  Val Acc: 74.6500%,  Time: 0:03:53 **
+Train Step:    100,  Train Loss: 0.3605,  Train Acc: 84.0000%,  Val Loss: 0.4086,  Val Acc: 81.6000%,  Time: 0:09:21 **
+Epoch:2/2
+Train Step:    150,  Train Loss: 0.3442,  Train Acc: 84.0000%,  Val Loss: 0.3553,  Val Acc: 85.1000%,  Time: 0:14:58 **
+Train Step:    200,  Train Loss: 0.2142,  Train Acc: 92.0000%,  Val Loss: 0.3374,  Val Acc: 85.9000%,  Time: 0:20:43 **
+Test Loss:   0.3,  Test Acc: 87.45%
+Precision, Recall and F1-Score...
+              precision    recall  f1-score   support
+
+           0     0.8741    0.8750    0.8746      1000
+           1     0.8749    0.8740    0.8744      1000
+
+    accuracy                         0.8745      2000
+   macro avg     0.8745    0.8745    0.8745      2000
+weighted avg     0.8745    0.8745    0.8745      2000
+
+Confusion Matrix...
+[[875 125]
+ [126 874]]
+Test Time: 0:00:21

@@ -32,25 +32,21 @@ ds_yelp_hypertext_config = {
     "yelp_hypertext_1w": {
         "dirname": "yelp_hypertext_1w",
         "path": f"{dataset_dir}{os.sep}yelp_hypertext_1w",
-        "path_after_data_cleaning": f"{dataset_dir}{os.sep}yelp_hypertext_1w_data_cleaning",
         "count": 10000
     },
     "yelp_hypertext_10w": {
         "dirname": "yelp_hypertext_10w",
         "path": f"{dataset_dir}{os.sep}yelp_hypertext_10w",
-        "path_after_data_cleaning": f"{dataset_dir}{os.sep}yelp_hypertext_10w_data_cleaning",
         "count": 100000
     },
     "yelp_hypertext_20w": {
         "dirname": "yelp_hypertext_20w",
         "path": f"{dataset_dir}{os.sep}yelp_hypertext_20w",
-        "path_after_data_cleaning": f"{dataset_dir}{os.sep}yelp_hypertext_20w_data_cleaning",
         "count": 200000
     },
     "yelp_hypertext_40w": {
         "dirname": "yelp_hypertext_40w",
         "path": f"{dataset_dir}{os.sep}yelp_hypertext_40w",
-        "path_after_data_cleaning": f"{dataset_dir}{os.sep}yelp_hypertext_40w_data_cleaning",
         "count": 400000
     },
     # "yelp_hypertext_60w": {
@@ -80,25 +76,21 @@ ds_yelp_fasttext_config = {
     "yelp_fasttext_1w": {
         "dirname": "yelp_fasttext_1w",
         "path": f"{dataset_dir}{os.sep}yelp_fasttext_1w",
-        "path_after_data_cleaning": f"{dataset_dir}{os.sep}yelp_fasttext_1w_data_cleaning",
         "count": 10000
     },
     "yelp_fasttext_10w": {
         "dirname": "yelp_fasttext_10w",
         "path": f"{dataset_dir}{os.sep}yelp_fasttext_10w",
-        "path_after_data_cleaning": f"{dataset_dir}{os.sep}yelp_fasttext_10w_data_cleaning",
         "count": 100000
     },
     "yelp_fasttext_20w": {
         "dirname": "yelp_fasttext_20w",
         "path": f"{dataset_dir}{os.sep}yelp_fasttext_20w",
-        "path_after_data_cleaning": f"{dataset_dir}{os.sep}yelp_fasttext_20w_data_cleaning",
         "count": 200000
     },
     "yelp_fasttext_40w": {
         "dirname": "yelp_fasttext_40w",
         "path": f"{dataset_dir}{os.sep}yelp_fasttext_40w",
-        "path_after_data_cleaning": f"{dataset_dir}{os.sep}yelp_fasttext_40w_data_cleaning",
         "count": 400000
     },
     # "yelp_fasttext_60w": {
@@ -128,25 +120,21 @@ ds_yelp_word2vec_config = {
     "yelp_word2vec_1w": {
         "dirname": "yelp_word2vec_1w",
         "path": f"{dataset_dir}{os.sep}yelp_word2vec_1w",
-        "path_after_data_cleaning": f"{dataset_dir}{os.sep}yelp_word2vec_1w_data_cleaning",
         "count": 10000
     },
     "yelp_word2vec_10w": {
         "dirname": "yelp_word2vec_10w",
         "path": f"{dataset_dir}{os.sep}yelp_word2vec_10w",
-        "path_after_data_cleaning": f"{dataset_dir}{os.sep}yelp_word2vec_10w_data_cleaning",
         "count": 100000
     },
     "yelp_word2vec_20w": {
         "dirname": "yelp_word2vec_20w",
         "path": f"{dataset_dir}{os.sep}yelp_word2vec_20w",
-        "path_after_data_cleaning": f"{dataset_dir}{os.sep}yelp_word2vec_20w_data_cleaning",
         "count": 200000
     },
     "yelp_word2vec_40w": {
         "dirname": "yelp_word2vec_40w",
         "path": f"{dataset_dir}{os.sep}yelp_word2vec_40w",
-        "path_after_data_cleaning": f"{dataset_dir}{os.sep}yelp_word2vec_40w_data_cleaning",
         "count": 400000
     },
     # "yelp_word2vec_60w": {

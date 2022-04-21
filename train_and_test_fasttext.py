@@ -1,27 +1,33 @@
+import re
+import time
+
 import fasttext
 from data_preprocessor.config import *
-from tabulate import tabulate
+from sklearn.metrics import precision_recall_fscore_support as score
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import classification_report
+from tqdm import tqdm
+from utils import get_time_dif
 
 
-class FastTextRecord:
-    def __init__(self, name, N, p, r):
-        self.name = name
-        self.N = N
-        self.p = p
-        self.r = r
+if __name__ == '__main__':
+    # fasttext_records = []
+    for k, v in ds_yelp_fasttext_config.items():
+        dir = f"datasets{os.sep}{v['dirname']}"
+        print(f"\n======================= {dir} =======================")
+        start_time = time.time()
+        model = fasttext.train_supervised(f"{dir}{os.sep}train.txt")
+        # N, p, r = model.test(f"datasets{os.sep}{v['dirname']}{os.sep}test.txt")
+        fasttext_train_time = get_time_dif(start_time)
+        print(f"fasttext train time: {fasttext_train_time}")
+        predicted = []
+        y_test = []
+        with open(f"{dir}{os.sep}test.txt") as f:
+            for line in tqdm(f.readlines()):
+                line = line.strip()
+                y_test.append(int(line[-1]))
+                predicted.append(int(model.predict(line[:-11])[0][0][-1]))
 
-
-fasttext_records = []
-for k, v in ds_yelp_fasttext_config.items():
-    model = fasttext.train_supervised(f"datasets{os.sep}{v['dirname']}{os.sep}train.txt")
-    N, p, r = model.test(f"datasets{os.sep}{v['dirname']}{os.sep}test.txt")
-    fasttext_records.append(FastTextRecord(v['path'], N, p, r))
-    # model = fasttext.train_supervised(f"{v['path_after_data_cleaning']}{os.sep}train.txt")
-    # N, p, r = model.test(f"{v['path_after_data_cleaning']}{os.sep}test.txt")
-    # fasttext_records.append(FastTextRecord(v['path_after_data_cleaning'], N, p, r))
-
-d = []
-for record in fasttext_records:
-    d.append([record.name, record.N, record.p, record.r])
-
-print(tabulate(d, headers=["Name", "Number of Sample", "Precision", "Recall"]))
+        precision, recall, fscore, support = score(y_test, predicted)
+        accuracy = accuracy_score(y_test, predicted)
+        print(classification_report(y_test, predicted, target_names=["class 0", "class 1"]))

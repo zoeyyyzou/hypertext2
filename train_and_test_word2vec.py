@@ -1,4 +1,6 @@
 import os
+import sys
+
 from gensim.models import Word2Vec
 import time
 import pandas as pd
@@ -7,6 +9,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.svm import SVC
 from sklearn.metrics import classification_report
 import pickle
+from utils import get_time_dif
 
 from data_preprocessor.config import ds_yelp_word2vec_config
 
@@ -173,8 +176,15 @@ def test_SVM(input_dir, size: int = 100):
 if __name__ == '__main__':
     size = 100
 
+    skip = 0
+    if len(sys.argv) >= 2:
+        skip = int(sys.argv[1])
     for k, v in ds_yelp_word2vec_config.items():
+        if skip > 0:
+            skip -= 1
+            continue
         dir = f"datasets{os.sep}{v['dirname']}"
+        start_time = time.time()
         print(f"\n======================= {dir} =======================")
         # 1. train word2vec
         print("1. Start train word2vec")
@@ -183,10 +193,15 @@ if __name__ == '__main__':
         # # 2. generate word2vec vectors
         print("2. Start  generate word2vec vectors")
         generate_word2vec_vectors(dir, dir, size=size)
+        word_2_vec_diff = get_time_dif(start_time)
 
         # 3. train decision tree
+        start_time = time.time()
         print("3. Start train decision tree")
         train_decision_tree(dir, dir)
+        decision_tree_train_time = get_time_dif(start_time)
+
+        print(f"Decision tree train time: {decision_tree_train_time + word_2_vec_diff}")
 
         # 4. test decision tree
         print("4. Start test decision tree")
@@ -194,8 +209,12 @@ if __name__ == '__main__':
 
         # 5. train SVM
         print("5. train SVM")
+        start_time = time.time()
         train_SVM(dir, dir)
+        svm_train_time = get_time_dif(start_time)
+        print(f"SVM train time: {svm_train_time + word_2_vec_diff}")
 
         # 6. test SVM
         print("6. test SVM")
         test_SVM(dir, size=size)
+        break
