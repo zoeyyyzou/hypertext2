@@ -723,18 +723,48 @@ cd data_preprocessor
 python preprocessor.py
 ```
 
+### 4.4 Train and test fasttext
 
+```bash
+# Back to root directory
+cd ..
+python train_and_test_hypertext.py
+```
+
+### 4.5 Train and test hypertext
+
+```bash
+python train_and_test_hypertext.py <experiment number>
+
+# experiment number => [0, 1, 2, 3]
+# for example
+python train_and_test_hypertext.py 0
+python train_and_test_hypertext.py 1
+python train_and_test_hypertext.py 2
+python train_and_test_hypertext.py 3
+```
+
+### 4.6 Train and test word2vec
+
+```bash
+python train_and_test_word2vec.py <experiment number>
+
+# experiment number => [0, 1, 2, 3]
+# for example
+python train_and_test_word2vec.py 0
+python train_and_test_word2vec.py 1
+python train_and_test_word2vec.py 2
+python train_and_test_word2vec.py 3
+```
 
 ## 5. Experiment result
 
-|             | Dataset Size | Train/Validation/Test Ratio |      |      |
-| ----------- | :----------: | :-------------------------: | :--: | ---- |
-| Experiment1 |    10000     |       0.6 : 0.2 : 0.2       |      |      |
-| Experiment2 |    100000    |       0.6 : 0.2 : 0.2       |      |      |
-| Experiment3 |    200000    |       0.6 : 0.2 : 0.2       |      |      |
-| Experiment4 |    400000    |       0.6 : 0.2 : 0.2       |      |      |
-
-
+|             | Dataset Size | Train/Validation/Test Ratio |
+| ----------- | :----------: | :-------------------------: |
+| Experiment1 |    10000     |       0.6 : 0.2 : 0.2       |
+| Experiment2 |    100000    |       0.6 : 0.2 : 0.2       |
+| Experiment3 |    200000    |       0.6 : 0.2 : 0.2       |
+| Experiment4 |    400000    |       0.6 : 0.2 : 0.2       |
 
 - Accuracy 
 
