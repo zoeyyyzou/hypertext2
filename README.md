@@ -385,23 +385,23 @@ weighted avg       0.83      0.83      0.83      2000
 
 This paper uses the hypertext model implementation provided by [huawei-noah](https://github.com/huawei-noah/Pretrained-Language-Model/tree/master/HyperText) to train and test the model. Use the following parameters for training:
 
-|   Parameter name    |    Value    |      |
-| :-----------------: | :---------: | :--: |
-|      embedding      |  "random"   |      |
-|     model_name      | "HyperText" |      |
-|       dropout       |     0.0     |      |
-| require_improvement |    6000     |      |
-|     num_epochs      |      2      |      |
-|     batch_size      |     50      |      |
-|     max_length      |    1000     |      |
-|    learning_rate    |   1.1e-2    |      |
-|      embed_dim      |     20      |      |
-|       bucket        |   1500000   |      |
-|     wordNgrams      |      2      |      |
-|    lr_decay_rate    |    0.96     |      |
-|  use_word_segment   |    True     |      |
-|      min_freq       |      1      |      |
-|   eval_per_batchs   |     50      |      |
+|   Parameter name    |    Value    |
+| :-----------------: | :---------: |
+|      embedding      |  "random"   |
+|     model_name      | "HyperText" |
+|       dropout       |     0.0     |
+| require_improvement |    6000     |
+|     num_epochs      |      2      |
+|     batch_size      |     50      |
+|     max_length      |    1000     |
+|    learning_rate    |   1.1e-2    |
+|      embed_dim      |     20      |
+|       bucket        |   1500000   |
+|     wordNgrams      |      2      |
+|    lr_decay_rate    |    0.96     |
+|  use_word_segment   |    True     |
+|      min_freq       |      1      |
+|   eval_per_batchs   |     50      |
 
 ```python
 def train_and_test(dataset_dir: str, output_dir: str, embedding: str = "random",
@@ -698,4 +698,30 @@ weighted avg       0.65      0.64      0.63      2000
 ```
 
 ## 4. Build
+
+### 4.1 Get code and install requirements
+
+```bash
+git clone https://github.com/zoeyyyzou/sentiment-analysis
+cd sentiment-analysis
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+### 4.2 Get datasets
+
+```bash
+!mkdir -p datasets/yelp
+!git clone https://github.com/zoeyyyzou/yelp.git datasets/yelp
+```
+
+### 4.3 Do data preprocessing
+
+```bash
+cd data_preprocessor
+python preprocessor.py
+```
+
+
 
