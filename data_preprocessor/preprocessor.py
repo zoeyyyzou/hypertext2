@@ -224,28 +224,28 @@ if __name__ == '__main__':
     print("2. Start display and extraction")
     data_display_and_extraction()
 
-    # # 3. do data cleaning
-    # print("3. Start data cleaning")
-    # # data_cleaning()
-    #
-    # # 4. generate datasets
-    # print("4. Start generate datasets for model")
-    # # Generate datasets of different sizes for HyperText
-    # print("4.1 Generate datasets of different sizes for HyperText")
+    # 3. do data cleaning
+    print("3. Start data cleaning")
+    # data_cleaning()
+
+    # 4. generate datasets
+    print("4. Start generate datasets for model")
+    # Generate datasets of different sizes for HyperText
+    print("4.1 Generate datasets of different sizes for HyperText")
     for k, v in ds_yelp_hypertext_config.items():
         train_df, dev_df, test_df = split_dataset(v["count"])
         generate_hypertext_and_fasttext_dataset(v["path"], hypertext_get_label_and_content,
                                                 train_df, dev_df, test_df)
-    #
-    # # Generate datasets of different sizes for FastText
-    # print("4.2 Generate datasets of different sizes for FastText")
+
+    # Generate datasets of different sizes for FastText
+    print("4.2 Generate datasets of different sizes for FastText")
     for k, v in ds_yelp_fasttext_config.items():
         train_df, dev_df, test_df = split_dataset(v["count"])
         generate_hypertext_and_fasttext_dataset(v["path"], fasttext_get_label_and_content,
                                                 train_df, dev_df, test_df)
-    #
-    # # Generate datasets of different sizes for word2vec
-    # print("4.3 Generate datasets of different sizes for word2vec")
-    # for k, v in ds_yelp_word2vec_config.items():
-    #     train_df, dev_df, test_df = split_dataset(v["count"])
-    #     generate_word2vec_dataset(v["path"], train_df, dev_df, test_df)
+
+    # Generate datasets of different sizes for word2vec
+    print("4.3 Generate datasets of different sizes for word2vec")
+    for k, v in ds_yelp_word2vec_config.items():
+        train_df, dev_df, test_df = split_dataset(v["count"])
+        generate_word2vec_dataset(v["path"], train_df, dev_df, test_df)

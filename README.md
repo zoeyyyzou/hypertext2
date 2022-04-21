@@ -512,6 +512,10 @@ Test Time: 0:00:21
 
 ### 3.3 word2vec
 
+> [Sentiment Classification using Word Embeddings (Word2Vec) | by Dipika Baad | The Startup | Medium](https://medium.com/swlh/sentiment-classification-using-word-embeddings-word2vec-aedf28fbb8ca)
+>
+> [models.word2vec – Word2vec embeddings — gensim (radimrehurek.com)](https://radimrehurek.com/gensim/models/word2vec.html)
+
 In this project, we will be using gensim’s [Word2Vec](https://radimrehurek.com/gensim/models/word2vec.html) for creating the model. Some of the important parameters are as follows:
 
 - **size**: The number of dimensions of the embeddings and the default is 100.
@@ -692,4 +696,6 @@ SVM train time: 0:00:15
    macro avg       0.65      0.64      0.63      2000
 weighted avg       0.65      0.64      0.63      2000
 ```
+
+## 4. Build
 
