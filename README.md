@@ -102,7 +102,7 @@ data_df['sentiment'] = [map_sentiment(x) for x in data_df['stars']]
 
 As can be seen from the above figure, a total of **473275** reviews in the current data set are **positive** and **226725** reviews are **negative**.
 
-In order to ensure the same number of positive and negative samples, we use the following code to take 200000 samples from each of the positive and negative samples for subsequent processing, and save to csv file.
+In order to ensure the same number of positive and negative samples, I use the following code to take 200000 samples from each of the positive and negative samples for subsequent processing, and save to csv file.
 
 ```python
 def get_top_data(data_df, top_n=200000):
@@ -118,7 +118,7 @@ data_df.to_csv(ds_yelp_csv_after_extraction)
 
 ### 2.3 Data cleaning
 
-Before model training, we need to clean the datasets, we will clean the data according to the following steps.
+Before model training, I need to clean the datasets, I will clean the data according to the following steps.
 
 1. **Remove stop words.**
 
@@ -132,7 +132,7 @@ Before model training, we need to clean the datasets, we will clean the data acc
    data_df['tokenized_text'] = [simple_preprocess(line, deacc=True) for line in tqdm(data_df['text'])]
    ```
 
-   We use ` simple_process` provided by **gensim** to tokenize for each review text. This function supports the following functions:
+   I use ` simple_process` provided by **gensim** to tokenize for each review text. This function supports the following functions:
 
    - Make all words lowercase.
    - Remove punctuation.
@@ -140,7 +140,7 @@ Before model training, we need to clean the datasets, we will clean the data acc
 
 3. **Stemming**
 
-   We use `PorterStemmer` provided by gensim for mapping words to its root form.
+   I use `PorterStemmer` provided by gensim for mapping words to its root form.
 
    ```python
    from gensim.parsing.porter import PorterStemmer,
@@ -150,7 +150,7 @@ Before model training, we need to clean the datasets, we will clean the data acc
                                 tqdm(data_df['tokenized_text'])]
    ```
 
-4. For generate hypertext and fasttext datasats, we need to merge all token to one sentences.
+4. For generate hypertext and fasttext datasats, merging all token to one sentences.
 
    ```python
    data_df['text'] = [" ".join(tokens) for tokens in tqdm(data_df['tokenized_text'])]
@@ -161,7 +161,7 @@ Before model training, we need to clean the datasets, we will clean the data acc
 
 ### 2.4 Split datasets
 
-In order to test the accuracy of each model under different sample sizes, we need to generate data sets of different sizes, and divide each data set into training set, verification set and test set.
+In order to test the accuracy of each model under different sample sizes, I generate data sets of different sizes, and divide each data set into training set, verification set and test set.
 
 ```python
 def split_dataset(sampleNum: int, train_ratio: float = 0.6, dev_ratio: float = 0.2, test_ratio: float = 0.2):
@@ -192,9 +192,9 @@ Hypertext model requires the input data to conform to the following format：
 I like this food!	__label__1
 ```
 
-We use the following code to generate data sets with a total sample size of 1w, 10w, 20w and 40w. For each data set, we divide it into training set (60%), verification set (20%) and test set (20%).
+Using following code to generate data sets with a total sample size of 1w, 10w, 20w and 40w. For each data set, divide it into training set (60%), verification set (20%) and test set (20%).
 
-> When training the fasttext model, we did not use the validation set, but in order to keep consistent with hypertext, we generated the validation set
+> When training the fasttext model, do not use the validation set, but in order to keep consistent with hypertext, I generated the validation set
 
 ```python
 ds_yelp_fasttext_config = {
@@ -242,7 +242,7 @@ Hypertext model requires the input data to conform to the following format：
 I like this food!	1
 ```
 
-We use the following code to generate data sets with a total sample size of 1w, 10w, 20w and 40w. For each data set, we divide it into training set (60%), verification set (20%) and test set (20%).
+Using the following code to generate data sets with a total sample size of 1w, 10w, 20w and 40w. For each data set, divide it into training set (60%), verification set (20%) and test set (20%).
 
 ```python
 ds_yelp_hypertext_config = {
@@ -299,7 +299,7 @@ for k, v in ds_yelp_hypertext_config.items():
 
 ### 2.7 Generate datasets of different sizes for word2vec
 
-The word2vec model uses the tokens as input, so we just need to dump the result of `split_dataset`
+The word2vec model uses the tokens as input, therefore just need to dump the result of `split_dataset`
 
 ```python
 ds_yelp_word2vec_config = {
@@ -516,7 +516,7 @@ Test Time: 0:00:21
 >
 > [models.word2vec – Word2vec embeddings — gensim (radimrehurek.com)](https://radimrehurek.com/gensim/models/word2vec.html)
 
-In this project, we will be using gensim’s [Word2Vec](https://radimrehurek.com/gensim/models/word2vec.html) for creating the model. Some of the important parameters are as follows:
+In this project, using gensim’s [Word2Vec](https://radimrehurek.com/gensim/models/word2vec.html) for creating the model. Some of the important parameters are as follows:
 
 - **size**: The number of dimensions of the embeddings and the default is 100.
 - **window**: The maximum distance between a target word and words around the target word. The default window is 5.
