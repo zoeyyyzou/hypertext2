@@ -15,6 +15,12 @@ def drawOnePic(label1: str, label2: str, label3: str, label4: str,
                   markerfacecolor='none', markersize=6)
     l4 = plt.plot(x, y4, "#5E2612", label=label4, linestyle='dotted', marker='X',
                   markerfacecolor='none', markersize=6)
+    print()
+    print(y1)
+    print(y2)
+    print(y3)
+    print(y4)
+    print()
     if title:
         plt.title(title)
     plt.xticks([index for index in x], label_list)

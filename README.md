@@ -118,7 +118,7 @@ data_df.to_csv(ds_yelp_csv_after_extraction)
 
 ### 2.3 Data cleaning
 
-Before model training, I need to clean the datasets, I will clean the data according to the following steps.
+Before model training, we need to clean the datasets, we will clean the data according to the following steps.
 
 1. **Remove stop words.**
 
@@ -781,6 +781,13 @@ python train_and_test_word2vec.py 3
 
   ![accuracy.svg](doc/accuracy.svg)
 
+  ```bash
+  [0.56, 0.58, 0.58, 0.59]
+  [0.63, 0.66, 0.66, 0.68]
+  [0.84, 0.88, 0.89, 0.91]
+  [0.8745, 0.8942, 0.9055, 0.9251]
+  ```
+
 - F1-score
 
   => F1-score combines precision and recall into one metric by calculating the harmonic mean between those two.
@@ -794,6 +801,20 @@ python train_and_test_word2vec.py 3
 
   ![f1score.svg](doc/f1score.svg)
 
+  ```bash
+  [0.56, 0.58, 0.58, 0.59]
+  [0.62, 0.66, 0.66, 0.68]
+  [0.84, 0.88, 0.89, 0.91]
+  [0.8745, 0.8941, 0.9055, 0.9251]
+  ```
+
 - Train time
 
   ![train-time.svg](doc/train-time.svg)
+  
+  ```bash
+  [14, 106, 218, 433]
+  [15, 425, 1619, 6040]
+  [0, 2, 3, 7]
+  [1243, 7135, 11350, 20623]
+  ```
