@@ -32,8 +32,8 @@ def drawOnePic(label1: str, label2: str, label3: str, label4: str,
         plt.ylim(ylimHigh)
     plt.legend(loc=0)
     # save pictures
-    full_path = os.getcwd() + "/" + savePath  # 将图片保存到当前目录，记得斜杠；可更改文件格式（.tif），不写的话默认“.png ”
-    plt.savefig(full_path, bbox_inches='tight', pad_inches=0)  # 存储路径+设置图片分辨率dpi=960
+    full_path = os.getcwd() + "/" + savePath  # save to current path
+    plt.savefig(full_path, bbox_inches='tight', pad_inches=0)
     plt.close()
 
 
