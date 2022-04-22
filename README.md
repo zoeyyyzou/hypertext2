@@ -712,8 +712,8 @@ pip install -r requirements.txt
 ### 4.2 Get datasets
 
 ```bash
-!mkdir -p datasets/yelp
-!git clone https://github.com/zoeyyyzou/yelp.git datasets/yelp
+mkdir -p datasets/yelp
+git clone https://github.com/zoeyyyzou/yelp.git datasets/yelp
 ```
 
 ### 4.3 Do data preprocessing
