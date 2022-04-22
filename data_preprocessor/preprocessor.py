@@ -226,7 +226,7 @@ if __name__ == '__main__':
 
     # 3. do data cleaning
     print("3. Start data cleaning")
-    # data_cleaning()
+    data_cleaning()
 
     # 4. generate datasets
     print("4. Start generate datasets for model")
