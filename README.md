@@ -728,7 +728,7 @@ python preprocessor.py
 ```bash
 # Back to root directory
 cd ..
-python train_and_test_hypertext.py
+python train_and_test_fasttext.py
 ```
 
 ### 4.5 Train and test hypertext
