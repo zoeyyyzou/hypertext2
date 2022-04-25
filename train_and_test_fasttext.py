@@ -1,14 +1,10 @@
-import re
 import time
 
 import fasttext
 from data_preprocessor.config import *
-from sklearn.metrics import precision_recall_fscore_support as score
-from sklearn.metrics import accuracy_score
 from sklearn.metrics import classification_report
 from tqdm import tqdm
-from utils import get_time_dif
-
+from models.hypertext_model.utils import get_time_dif
 
 if __name__ == '__main__':
     # fasttext_records = []
@@ -26,8 +22,14 @@ if __name__ == '__main__':
             for line in tqdm(f.readlines()):
                 line = line.strip()
                 y_test.append(int(line[-1]))
+                # # tuple => ( ('__label__0'), array([0.7]) )
+                # ttt = model.predict(line[:-11])
+                # # ('__label__0')
+                # ttt[0]
+                # # __label__0
+                # ttt[0][0]
+                # # 0
+                # ttt[0][0][-1]
                 predicted.append(int(model.predict(line[:-11])[0][0][-1]))
 
-        precision, recall, fscore, support = score(y_test, predicted)
-        accuracy = accuracy_score(y_test, predicted)
         print(classification_report(y_test, predicted, target_names=["class 0", "class 1"]))

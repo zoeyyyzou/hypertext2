@@ -12,6 +12,7 @@ porter_stemmer = PorterStemmer()
 def map_sentiment(stars_received):
     """
     Function to map stars to sentiment
+    把 star -> sentiment（积极或者消极）
     Args:
         stars_received:
 
@@ -42,6 +43,7 @@ def get_top_data(data_df, top_n=200000):
 def load_yelp_orig_data():
     """
     Load json format yelp dataset, save to csv format
+    加载 JSON 格式的数据集，转换成CSV
     Returns:
 
     """
@@ -86,7 +88,8 @@ def data_display_and_extraction():
     plt.close()
 
     # 5. Function call to get the top 200000 from each sentiment
-    data_df = data_df.loc[data_df['text'].str.len() > 20]
+    data_df = data_df.loc[data_df['text'].str.len() > 5]  # 这边把20改成了5，过滤掉评论长度小于5的样本
+    # 从正负样本各取20w，总共样本数40w
     top_data_df_small = get_top_data(data_df, top_n=200000)
 
     print("\nAfter segregating and taking equal number of rows for each sentiment:")
@@ -106,16 +109,21 @@ def data_cleaning():
     # Gensim’s simple_preprocess allows you to convert text to lower case and remove punctuations. It has min and max
     # length parameters as well which help to filter out rare words and most commonly words which will fall in that
     # range of lengths.
+    # 分词，把一句话变成一个单词序列
     print("Start data cleaning => Tokenization")
     # data_df = data_df.head(100)
+    # 将文本转换为小写并删除标点符号 => 并进行分词
+    # a. 大小写转换
+    # b. 删除标点符号
+    # c. 分词
     data_df['tokenized_text'] = [simple_preprocess(line, deacc=True) for line in tqdm(data_df['text'])]
-    # print(data_df.query("81876"))
-    # return
+
     # 3. Stemming: Stemming process reduces the words to its’ root word. Unlike Lemmatization which uses grammar rules
     # and dictionary for mapping words to root form, stemming simply removes suffixes/prefixes. Stemming is widely used
     # in the application of SEOs, Web search results, and information retrieval since as long as the root matches in the
     # text somewhere it helps to retrieve all the related documents in the search
     print("Start data cleaning => Stemming")
+    # 每个token映射到到它的词干
     data_df['stemmed_tokens'] = [[porter_stemmer.stem(word) for word in tokens] for tokens in
                                  tqdm(data_df['tokenized_text'])]
 
@@ -137,13 +145,17 @@ def split_dataset(sampleNum: int, train_ratio: float = 0.6, dev_ratio: float = 0
 
     Returns:
     """
-
+    # 10000
     data_df = pd.read_csv(ds_yelp_csv_after_data_cleaning)
+    # 6000， 2000， 2000
     train_count, dev_count, test_count = int(sampleNum * train_ratio), int(sampleNum * dev_ratio), int(
         sampleNum * test_ratio)
+    # 3000， 1000， 1000
     train_count_each, dev_count_each, test_count_each = int(train_count / 2), int(dev_count / 2), int(test_count / 2)
+    # 分出所有的正负样本
     negative_datas = data_df.query("sentiment==0")
     positive_datas = data_df.query("sentiment==1")
+    # 正样本取3000，负样本取3000，然后打乱
     train_df = shuffle(pd.concat([negative_datas.iloc[:train_count_each], positive_datas.iloc[:train_count_each]]))
     dev_df = shuffle(pd.concat([negative_datas.iloc[train_count_each:train_count_each + dev_count_each],
                                 positive_datas.iloc[train_count_each:train_count_each + dev_count_each]]))

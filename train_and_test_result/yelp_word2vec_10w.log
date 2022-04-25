@@ -1,10 +1,10 @@
 
 ======================= datasets/yelp_word2vec_10w =======================
 1. Start train word2vec
-Time taken to train word2vec model: 54.34956097602844
+Time taken to train word2vec model: 54.76423501968384
 2. Start  generate word2vec vectors
 3. Start train decision tree
-Time taken to fit the model with word2vec vectors: 7.2242841720581055
+Time taken to fit the model with word2vec vectors: 7.535053253173828
 Decision tree train time: 0:01:46
 4. Start test decision tree
               precision    recall  f1-score   support
@@ -17,15 +17,54 @@ Decision tree train time: 0:01:46
 weighted avg       0.58      0.58      0.58     20000
 
 5. train SVM
-Time taken to fit the model with word2vec vectors: 326.05757999420166
-SVM train time: 0:07:05
+Time taken to fit the model with word2vec vectors: 311.1692531108856
+SVM train time: 0:06:50
 6. test SVM
               precision    recall  f1-score   support
 
-           0       0.64      0.74      0.68     10000
+           0       0.64      0.74      0.69     10000
            1       0.69      0.58      0.63     10000
 
     accuracy                           0.66     20000
    macro avg       0.66      0.66      0.66     20000
 weighted avg       0.66      0.66      0.66     20000
+
+7. train RF
+Time taken to fit the model with RF vectors: 54.30200433731079
+RF train time: 0:02:34
+8. test RF
+              precision    recall  f1-score   support
+
+           0       0.66      0.68      0.67     10000
+           1       0.67      0.65      0.66     10000
+
+    accuracy                           0.67     20000
+   macro avg       0.67      0.67      0.67     20000
+weighted avg       0.67      0.67      0.67     20000
+
+7. train KNN
+Time taken to fit the model with KNN vectors: 0.007918119430541992
+KNN train time: 0:01:40
+8. test KNN
+              precision    recall  f1-score   support
+
+           0       0.61      0.65      0.63     10000
+           1       0.63      0.58      0.60     10000
+
+    accuracy                           0.62     20000
+   macro avg       0.62      0.62      0.61     20000
+weighted avg       0.62      0.62      0.61     20000
+
+7. train NB
+Time taken to fit the model with NB vectors: 0.05420708656311035
+NB train time: 0:01:39
+8. test NB
+              precision    recall  f1-score   support
+
+           0       0.59      0.76      0.67     10000
+           1       0.67      0.48      0.56     10000
+
+    accuracy                           0.62     20000
+   macro avg       0.63      0.62      0.61     20000
+weighted avg       0.63      0.62      0.61     20000
 

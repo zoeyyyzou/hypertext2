@@ -28,7 +28,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from sklearn import metrics
 import time
-from utils import get_time_dif, build_dataloader
+from models.hypertext_model.utils import get_time_dif, build_dataloader
 from .radam_optimizer import *
 
 

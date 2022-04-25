@@ -30,7 +30,7 @@ from train import train
 from importlib import import_module
 import argparse
 from models.Config import Config
-from utils import build_dataset, get_time_dif, build_dataloader
+from models.hypertext_model.utils import build_dataset, get_time_dif
 
 parser = argparse.ArgumentParser(description='HyperText Text Classification')
 parser.add_argument('--model', type=str, default='HyperText',

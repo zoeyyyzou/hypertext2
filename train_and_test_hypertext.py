@@ -6,7 +6,7 @@ import random
 from models.hypertext_model.train import train
 from models.hypertext_model.models import HyperText
 from models.hypertext_model.models.Config import Config
-from utils import build_dataset, get_time_dif
+from models.hypertext_model.utils import build_dataset, get_time_dif
 from data_preprocessor.config import *
 
 
@@ -23,6 +23,30 @@ def train_and_test(dataset_dir: str, output_dir: str, embedding: str = "random",
                    lr_decay_rate: float = 0.96, use_word_segment: bool = True, min_freq: int = 1,
                    eval_per_batchs: int = 50,
                    ):
+    """
+    6000 / 50 = 120 step
+    Args:
+        dataset_dir:
+        output_dir:
+        embedding:
+        model_name:
+        dropout:
+        require_improvement:
+        num_epochs:
+        batch_size:
+        max_length:
+        learning_rate:
+        embed_dim:
+        bucket:
+        wordNgrams:
+        lr_decay_rate:
+        use_word_segment:
+        min_freq:
+        eval_per_batchs:
+
+    Returns:
+
+    """
     print(f"\n\n============================== Start {dataset_dir} ==============================")
     config = Config(dataset_dir, output_dir, embedding)
 
